@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableHighlight, CheckBox } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, NavigationActions } from 'react-navigation';
 import  GlobalStyles  from '../styles'
 import { Card } from '../common/card';
-import { CardSection } from '../common/cardSection'
+import { CardSection } from '../common/cardSection';
+
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -17,18 +18,18 @@ export default class Login extends React.Component {
   }
 
   static navigationOptions = {
-    title: 'Login',
+  header: null
   };
 
   onClickLogin(){
-    if(this.state.username == 'admin' || this.state.password == 'admin'){
+  //  if(this.state.username == 'admin' && this.state.password == 'admin'){
       this.props.navigation.navigate('Dashboard');
 
-    }else{
+//    }else{
 
-        alert("Please enter valid username / password");
+//        alert("Please enter valid username / password");
 
-    }
+//    }
 
   }
 
@@ -46,6 +47,7 @@ export default class Login extends React.Component {
           style={GlobalStyles.textInput}
           autoCapitalize={'none'}
           autoCorrect={false}
+          underlineColorAndroid='transparent'
           onChangeText={(text) => this.setState({username:text})}
           value={this.state.username}
          />
@@ -57,6 +59,7 @@ export default class Login extends React.Component {
          <TextInput
          style={GlobalStyles.textInput}
          secureTextEntry={true}
+         underlineColorAndroid='transparent'
          autoCapitalize={'none'}
          autoCorrect={false}
          onChangeText={(text) => this.setState({password:text})}
@@ -64,7 +67,7 @@ export default class Login extends React.Component {
           />
       </CardSection>
       <CardSection style={{justifyContent:'center'}}>
-        <CheckBox style={{width:20,height:20, borderColor:'gray',backgroundColor:'#FFF'}} disabled={true}/>
+        <CheckBox  value={false} onValueChange={() => console.log("value might change")}/>
         <Text>   Remember me</Text>
       </CardSection>
       <CardSection style={{justifyContent:'center'}}>
